@@ -24,12 +24,11 @@ export async function getClient(authParams?: UserAuthParams, session?: string) {
         retryDelay: 3000,
         maxConcurrentDownloads: Number(config.telegram.maxConcurrentDownloads ?? 10),
         proxy:
-            config.telegram.proxy?.host && config.telegram.proxy.port && config.telegram.proxy.secret
+            config.telegram.proxy?.host && config.telegram.proxy.port
                 ? {
                       ip: config.telegram.proxy.host,
                       port: Number(config.telegram.proxy.port),
-                      MTProxy: true,
-                      secret: config.telegram.proxy.secret,
+                      socksType: 5,
                   }
                 : undefined,
     });
